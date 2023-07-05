@@ -1,0 +1,28 @@
+.homehead{
+    width: 100%;
+    height: 7rem;
+    background-color: purple;
+    font-size: 2.3rem;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+  text-align: center;
+  font-style: oblique;
+}
+
+@media (max-width:600px) {
+    .homehead{
+        height: 8rem;
+       font-size: 2rem;
+    } 
+}
+
+.note{
+  height: 5rem;
+  width:40rem;
+  background-color: pink;
+  border-radius: 14px;
+  text-align: center;
+  /* padding: 1rem */
+}
+

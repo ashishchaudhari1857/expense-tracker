@@ -3,8 +3,11 @@ import Input from "../UI/Input";
 import classes from "./login.module.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
+
 
 const Resetpass = () => {
+  const navigate=useNavigate();
   const submitHandler = (e) => {
     e.preventDefault();
     const Newemail = e.target.email.value;
@@ -26,6 +29,7 @@ const Resetpass = () => {
             const data =await res.json();
             if(res.ok){
                 toast.success("mail send successfully")
+                navigate('/login')
             }else{
                 throw Error(data.error.message)
             }

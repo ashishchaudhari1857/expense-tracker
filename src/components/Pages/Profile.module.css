@@ -1,0 +1,81 @@
+.form {
+  display: flex;
+  justify-content: space-around;
+}
+label {
+  font-size: 1.8rem;
+}
+
+.profile {
+  width: 100%;
+  height: 7rem;
+  background-color: purple;
+  font-size: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  font-style: oblique;
+}
+
+.note {
+  height: 5rem;
+  width: 40rem;
+  background-color: pink;
+  border-radius: 14px;
+}
+.quote {
+  font-size: 3rem;
+}
+
+.backbtn {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+/* media query */
+@media (max-width: 600px) {
+  .form {
+    display: block;
+    width: 30rem;
+    margin: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid #c6a7a7;
+  }
+  input {
+    width: 100%;
+    height: 3rem;
+    border-radius: 14px;
+    background-color: #f7f7f783;
+    border: 1px solid black;
+    font: inherit;
+    text-align: center;
+    font-size: 2rem;
+  }
+  label {
+    display: block;
+    width: 100%;
+    font-weight: bold;
+    text-align: center;
+    font-size: 1.6rem;
+  }
+  .quote {
+    display: none;
+  }
+  .note {
+    width: 100%;
+    height: 8rem;
+    margin-top: 1rem;
+  }
+  .profile {
+    background-color: transparent;
+  }
+  .btn {
+    display: flex;
+    margin: auto;
+    margin-top: 1rem;
+    font-size: 2rem;
+    border-radius: 8px;
+  }
+}

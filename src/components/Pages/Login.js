@@ -1,12 +1,14 @@
 import { useState } from "react";
 import Input from "../UI/Input";
-import { ToastContainer, toast } from "react-toastify";
-
+import { ToastContainer, toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css";
-
 import classes from "./login.module.css";
-import { NavLink, json } from "react-router-dom";
+import { NavLink, json , useNavigate} from "react-router-dom";
+import { useGlobalContext } from "../Store/ContextProvider";
 const Login = () => {
+  const ctx=useGlobalContext();
+
+  const navigate=useNavigate();
   const [flag, setflag] = useState(true);
   const toggelhandler=()=>{
      setflag((pre)=>!pre)
@@ -36,8 +38,12 @@ const Login = () => {
             );
 
             const data = await res.json();
+             ctx.login(data.idToken)
             if (res.ok) {
+
               toast.success("login successfully");
+        
+              navigate('/home')
             } else {
               throw Error(data.error.message);
             }
@@ -115,7 +121,7 @@ const Login = () => {
             <button className={classes.btn} type="submit">
               {flag ? "Login" : "Create"}
             </button>
-             <NavLink  to="/forget"  style={{fontSize:"2rem"}}> forget password</NavLink>
+             <NavLink  to="/forget"  style={{fontSize:"2rem ",color:"white"}}> forget password</NavLink>
             
           </div>
         </form>

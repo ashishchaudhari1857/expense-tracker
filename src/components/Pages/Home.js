@@ -1,12 +1,18 @@
 import React from 'react';
+import classes from './Home.module.css'
+import { NavLink } from 'react-router-dom';
 
-const HOME = () => {
+const Home = () => {
   return (
-    <div>
-      {/* Component JSX */}
-      <h1>thish is home</h1>
+    <>
+    <div className={classes.homehead}>
+      <p>Welcome to Expense Tracker</p>
+      <p className={classes.note}>Your Profile is incomplete.&nbsp;
+      <NavLink  to="/profile"  style={{color:"blue"}} >complete now</NavLink></p>
     </div>
+    </>
   );
+  
 };
 
-export default HOME;
+export default Home;
