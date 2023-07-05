@@ -5,7 +5,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import classes from "./login.module.css";
-import { json } from "react-router-dom";
+import { NavLink, json } from "react-router-dom";
 const Login = () => {
   const [flag, setflag] = useState(true);
   const toggelhandler=()=>{
@@ -102,24 +102,28 @@ const Login = () => {
             }}
           ></Input>
           <Input
-            label={"comfirm Password"}
+            label={"confirm Password"}
             input={{
               id: "cfPassword",
               type: "password",
-
+ 
               name: "cfPassword",
             }}
           ></Input>
-          ``
+        
           <div className={classes.action}>
             <button className={classes.btn} type="submit">
               {flag ? "Login" : "Create"}
             </button>
-            <button type="button"  className={classes.btn} onClick={toggelhandler}>
-              {flag ? "create new account" : "login with same "}
-            </button>
+             <NavLink  to="/forget"  style={{fontSize:"2rem"}}> forget password</NavLink>
+            
           </div>
         </form>
+            <div  className={classes.isSignIn}>
+           <button type="button"  className={classes.btn} onClick={toggelhandler}>
+              {flag ? "create new account" : "login with same "}
+            </button>
+            </div>
       </div>
       <ToastContainer  className="toast-container"/>
       

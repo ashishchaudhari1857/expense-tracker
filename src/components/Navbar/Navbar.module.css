@@ -5,6 +5,8 @@
   align-items: center;
   background-color: gray;
   padding: 0.48rem;
+
+  z-index: 999;
 }
 
 .logo {
@@ -48,9 +50,7 @@ ion-icon[name="close"] {
 
 /* 980px */
 @media (max-width: 62em) {
-  .header {
-    position: relative;
-  }
+ 
   .mobile_nav_btn {
     display: block;
     z-index: 999;
@@ -58,8 +58,8 @@ ion-icon[name="close"] {
   }
   .nav {
     /* display: none; */
-    width: 80%;
-    height: 70vh;
+    width: 100%;
+  height: 40vh;
     margin: auto;
     background-color: #e7f5e7;
     position: absolute;
@@ -69,7 +69,7 @@ ion-icon[name="close"] {
     flex-direction: column;
     gap: 2rem;
     justify-content: center;
-    transform: translateX(100%);
+    transform: translateY(-100%);
     transition: all 0.5s linear;
     opacity: 0;
     visibility: hidden;
@@ -78,7 +78,7 @@ ion-icon[name="close"] {
     
   }
   .active .nav {
-    transform: translateX(0%);
+    transform: translateY(0%);
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
@@ -93,4 +93,8 @@ ion-icon[name="close"] {
         display: none;
 
   }
+  .active.logo {
+    top: 0;
+  }
+  
 }
