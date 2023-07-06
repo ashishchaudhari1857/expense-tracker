@@ -1,13 +1,18 @@
 import { NavLink } from "react-router-dom";
 import React, { useState } from "react";
 import classes from "./Navbar.module.css";
+import { useGlobalContext } from "../Store/ContextProvider";
 
 const Navbar = () => {
+  const ctx=useGlobalContext();
   const [flag, setFlag] = useState(false);
 
   const toggleHandler = () => {
     setFlag((prevState) => !prevState);
   };
+  const logout=()=>{
+   ctx.logout();
+  }
 
   return (
     <>
@@ -34,6 +39,11 @@ const Navbar = () => {
             <li>
               <NavLink to="/about" className={classes.NavLink}>
                 About
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/login" onClick={logout} className={classes.NavLink}>
+                logout
               </NavLink>
             </li>
           </ul>
