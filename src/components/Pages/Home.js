@@ -1,6 +1,6 @@
 import React from 'react';
 import classes from './Home.module.css'
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { ToastContainer, toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css";
 import { useGlobalContext } from '../Store/ContextProvider';
@@ -45,6 +45,9 @@ const ctx=useGlobalContext();
 
     <div>
       <button onClick={verification}>Click here to verify email</button>
+    </div>
+    <div>
+     <Link to="/expenses"> <button>Click here to AddExpenses</button></Link> 
     </div>
     <ToastContainer  className="toast-container"/>
 

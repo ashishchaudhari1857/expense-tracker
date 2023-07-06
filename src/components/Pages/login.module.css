@@ -1,7 +1,7 @@
 .form{
     background-color:rgb(104, 72, 104);
     position:absolute;
-    height: 38rem;
+    height: 29rem;
     top:50%;
     left:50%;
     transform: translate(-50%,-50%);
@@ -54,8 +54,11 @@
 
 }
  
-@media (max-width:500px) {
+@media (max-width:650px) {
    .form{
     padding: 0%;
    } 
+   .isSignIn{
+    width: 25rem;
+   }
 }

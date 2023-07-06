@@ -91,29 +91,30 @@ const Login = () => {
         <form className={classes.form} onSubmit={submithandler}>
           <h1 style={{ textAlign: "center" }}>{flag ? "Login" : "Sign Up"}</h1>
           <Input
-            label={"Email"}
+            
             input={{
               id: "Email",
               type: "email",
               name: "Email",
+              placeholder:"Enter email"
             }}
           ></Input>
           <Input
-            label={"Password"}
+          
             input={{
               id: "Password",
               type: "password",
-
               name: "Password",
+              placeholder:"Enter Password"
             }}
           ></Input>
           <Input
-            label={"confirm Password"}
             input={{
               id: "cfPassword",
               type: "password",
  
               name: "cfPassword",
+              placeholder:"confirm Password"
             }}
           ></Input>
         

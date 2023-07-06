@@ -10,7 +10,7 @@ const Resetpass = () => {
   const navigate=useNavigate();
   const submitHandler = (e) => {
     e.preventDefault();
-    const Newemail = e.target.email.value;
+    const Enteremail = e.target.email.value;
 
     const reset = async () => {
       try{
@@ -19,7 +19,7 @@ const Resetpass = () => {
             {
               method: "POST",
               body: JSON.stringify({
-                email: Newemail,
+                email: Enteremail,
                 requestType: "PASSWORD_RESET",
               }),
               headers: {

@@ -1,11 +1,16 @@
 .form {
   display: flex;
   justify-content: space-around;
+  margin-top: 2rem;
 }
 label {
   font-size: 1.8rem;
 }
-
+input{
+  height: 2.5rem;
+  padding: 1rem;
+  border-radius: 14px;
+}
 .profile {
   width: 100%;
   height: 7rem;
@@ -27,19 +32,25 @@ label {
 .quote {
   font-size: 3rem;
 }
-
+.btn{
+  border-radius: 8px;
+  margin-top: 2rem ;
+}
 .backbtn {
   display: flex;
+  width: 20rem;
   justify-content: center;
-  margin-top: 2rem;
+  margin-top: 3rem;
+
 }
 
 /* media query */
 @media (max-width: 600px) {
   .form {
     display: block;
-    width: 30rem;
-    margin: 2rem;
+    width: 26rem;
+    margin: auto;
+    margin-top: 3rem;
     padding-bottom: 2rem;
     border-bottom: 1px solid #c6a7a7;
   }
@@ -51,7 +62,7 @@ label {
     border: 1px solid black;
     font: inherit;
     text-align: center;
-    font-size: 1.8rem;
+    font-size: 1.7rem;
   }
   label {
     display: block;
@@ -75,7 +86,11 @@ label {
     display: flex;
     margin: auto;
     margin-top: 1rem;
-    font-size: 2rem;
+    font-size: 1.7rem;
     border-radius: 8px;
+  }
+  .backbtn{
+    margin:auto ;
+
   }
 }

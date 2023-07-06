@@ -5,7 +5,8 @@ import { useGlobalContext } from "../Store/ContextProvider";
 
 const Navbar = () => {
   const ctx=useGlobalContext();
-  const [flag, setFlag] = useState(false);
+  const [flag, setFlag] = useState(false);// this is for dropdown
+  const isLogged=ctx.isLogged;
 
   const toggleHandler = () => {
     setFlag((prevState) => !prevState);
@@ -22,29 +23,35 @@ const Navbar = () => {
         <nav className={`${classes.navbar} ${flag ? classes.active : ""}`}>
           <ul className={classes.nav}>
             <li>
-              <NavLink to="/home" className={classes.NavLink}>
+            { isLogged && <NavLink to="/home" className={classes.NavLink}>
                 Home
-              </NavLink>
+              </NavLink>}
             </li>
             <li>
-              <NavLink to="/contact" className={classes.NavLink}>
+             {isLogged && <NavLink to="/contact" className={classes.NavLink}>
                 Contact Us
-              </NavLink>
+              </NavLink> }
             </li>
-            <li>
-              <NavLink to="/login" className={classes.NavLink}>
-                Login
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/about" className={classes.NavLink}>
+           
+          <li>
+             {isLogged&& <NavLink to="/about" className={classes.NavLink}>
                 About
-              </NavLink>
+              </NavLink> }
             </li>
             <li>
-              <NavLink to="/login" onClick={logout} className={classes.NavLink}>
+             { isLogged && <NavLink to="/login" onClick={logout} className={classes.NavLink}>
                 logout
-              </NavLink>
+              </NavLink>}
+            </li>
+            <li>
+             { isLogged && <NavLink to="/profile"  className={classes.NavLink}>
+                Profile
+              </NavLink>}
+            </li>
+            <li>
+            { !isLogged && <NavLink to="/login" className={classes.NavLink}>
+                Login/Sign-UP
+              </NavLink> }
             </li>
           </ul>
         </nav>

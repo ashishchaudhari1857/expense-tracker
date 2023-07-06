@@ -6,6 +6,7 @@ import { useState } from 'react';
 const ContextProvider = (props) => {
     const initialToken=localStorage.getItem('token');
     const [token, setToken]= useState(initialToken)
+    const isLogged = !!token;
 
     const login =(token)=>{
   setToken(token);
@@ -18,7 +19,8 @@ const ContextProvider = (props) => {
    const obj={
         login:login,
         logout:logout,
-        token:token
+        token:token,
+        isLogged:isLogged
     }
   return (
 

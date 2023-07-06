@@ -1,0 +1,53 @@
+.select {
+  width: 28rem;
+  display: block;
+  margin: auto;
+  border-radius: 14px;
+  margin-left: 20px;
+}
+option {
+  text-align: center;
+}
+.form {
+  display: block;
+  width: 35rem;
+  margin: auto;
+  justify-content: space-around;
+  border: 1px solid black;
+  margin-top: 2rem;
+}
+
+.btn {
+  display: flex;
+  background-color: green;
+  margin: auto;
+  margin-top: 1rem;
+  border-radius: 8px;
+  font-size: 1.5rem;
+}
+table {
+  font-size: 2rem;
+  border: 2px solid black;
+  margin: auto;
+  margin-top: 3rem;
+  width: 60rem;
+}
+th,
+td {
+  font-style: oblique;
+  border: 1px solid gray;
+  text-align: center;
+}
+
+@media (max-width: 670px) {
+  table {
+    width: 35rem;
+    font-size: 1.5rem;
+  }
+  .select{
+width: 23rem;
+  }
+  .form{
+    width: 28rem;
+  }
+}
