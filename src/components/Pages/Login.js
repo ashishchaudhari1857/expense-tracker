@@ -4,10 +4,10 @@ import { ToastContainer, toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css";
 import classes from "./login.module.css";
 import { NavLink, json , useNavigate} from "react-router-dom";
-import { useGlobalContext } from "../Store/ContextProvider";
+import { useSelector,useDispatch } from "react-redux";
+import { authActions } from "./LoginSlice/LoginSlice";
 const Login = () => {
-  const ctx=useGlobalContext();
-
+   const dispatch=useDispatch();
   const navigate=useNavigate();
   const [flag, setflag] = useState(true);
   const toggelhandler=()=>{
@@ -38,7 +38,8 @@ const Login = () => {
             );
 
             const data = await res.json();
-             ctx.login(data.idToken)
+            console.log(data.idToken)
+            dispatch(authActions.login(data.idToken))
             if (res.ok) {
 
               toast.success("login successfully");

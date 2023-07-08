@@ -1,14 +1,13 @@
-import Input from "../UI/Input";
 import classes from "./Profile.module.css";
 import React, { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { NavLink, json ,useNavigate} from "react-router-dom";
-import { useGlobalContext } from "../Store/ContextProvider";
-
+import { useSelector,useDispatch } from "react-redux";
 
 const Profile = () => {
-  const ctx = useGlobalContext();
+  const  token=useSelector((state)=>state.Auth.token)
+
   const navigate =useNavigate();
   const [user ,setuser]=useState([])
   const   Nameonchamgehandler=(e)=>{
@@ -25,7 +24,7 @@ const Profile = () => {
    const res = await fetch("https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyDECVREeZXqI7KQqMpsiP2L-pM5eyQqU9s",{
     method:'POST',
     body:JSON.stringify({
-      idToken:ctx.token,
+      idToken:token,
     }),
     headers:{
       'Content-Type': 'application/json'
@@ -63,7 +62,7 @@ userdetail()
           {
             method: "POST",
             body: JSON.stringify({
-              idToken: ctx.token,
+              idToken: token,
               displayName: EnterName,
               photoUrl: EnterUrl,
               returnSecureToken: true,

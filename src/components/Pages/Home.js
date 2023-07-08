@@ -3,16 +3,16 @@ import classes from './Home.module.css'
 import { Link, NavLink } from 'react-router-dom';
 import { ToastContainer, toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css";
-import { useGlobalContext } from '../Store/ContextProvider';
+import { useSelector,useDispatch } from 'react-redux';
 
 const Home = () => {
-const ctx=useGlobalContext();
+  const token =useSelector((state)=>state.Auth.token)
   const verification=async()=>{
     try{
       const res= await fetch("https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyDECVREeZXqI7KQqMpsiP2L-pM5eyQqU9s",{
         method:'POST',
         body:JSON.stringify({
-          idToken:ctx.token,
+          idToken:token,
           requestType:'VERIFY_EMAIL'
         }),
         headers:{

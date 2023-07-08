@@ -1,19 +1,17 @@
 import { NavLink } from "react-router-dom";
 import React, { useState } from "react";
 import classes from "./Navbar.module.css";
-import { useGlobalContext } from "../Store/ContextProvider";
+ import { useSelector,useDispatch } from "react-redux";
+ import { authActions } from "../Pages/LoginSlice/LoginSlice";
 
 const Navbar = () => {
-  const ctx=useGlobalContext();
   const [flag, setFlag] = useState(false);// this is for dropdown
-  const isLogged=ctx.isLogged;
-
+  const dispatch=useDispatch();
+  const isLogged =useSelector((state)=>state.Auth.isLogged)
   const toggleHandler = () => {
     setFlag((prevState) => !prevState);
   };
-  const logout=()=>{
-   ctx.logout();
-  }
+  
 
   return (
     <>
@@ -39,7 +37,7 @@ const Navbar = () => {
               </NavLink> }
             </li>
             <li>
-             { isLogged && <NavLink to="/login" onClick={logout} className={classes.NavLink}>
+             { isLogged && <NavLink to="/login" onClick={() => dispatch(authActions.logout())} className={classes.NavLink}>
                 logout
               </NavLink>}
             </li>

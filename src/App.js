@@ -5,12 +5,12 @@ import { Route, BrowserRouter, Routes } from "react-router-dom";
 import Resetpass from "./components/Pages/Resetpass";
 import Home from "./components/Pages/Home";
 import Profile from "./components/Pages/Profile";
-import { useGlobalContext } from "./components/Store/ContextProvider";
 import Expenseform from "./components/Pages/Expenseform";
+import { useSelector,useDispatch } from "react-redux";
 function App() {
-  const ctx = useGlobalContext();
-  const isLogged = ctx.isLogged;
+  const isLogged=useSelector((state)=>state.Auth.token)
   return (
+
     <>
       <Navbar></Navbar>
       <Routes>
