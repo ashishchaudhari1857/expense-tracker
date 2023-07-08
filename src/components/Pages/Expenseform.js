@@ -3,9 +3,12 @@ import Input from "../UI/Input";
 import classes from "./Expenseform.module.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import { useSelector ,useDispatch } from "react-redux";
+import { ExpenseActions } from "./slices/ExpenseSlice";
+import ExpenseList from "./ExpenseList/ExpenseList";
 const Expenseform = () => {
-  const [Expenses, setExpenses] = useState([]);
+  const Expenses =useSelector((state)=>state.Exp.expenses);
+  const dispatch=useDispatch();
   const [amount, setAmount] = useState("");
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("Food");
@@ -13,6 +16,7 @@ const Expenseform = () => {
 
   //
   const getdata = async () => {
+    const loading =toast.info("loading....")
     try {
       const res = await fetch(
         "https://expense-tracker-8c9e9-default-rtdb.firebaseio.com/Expenses.json"
@@ -27,7 +31,12 @@ const Expenseform = () => {
           key: key,
         });
       }
-      setExpenses(arraydata);
+        console.log("called ")
+      if(res.ok){
+        toast.dismiss(loading)
+      dispatch(ExpenseActions.addtoexpense(arraydata))
+
+      }
     } catch (err) {
       toast.error(err.message);
     }
@@ -50,7 +59,7 @@ const Expenseform = () => {
 
     const postdata = async () => {
       let res;
-
+  const  loading =toast.info("loading....")
       try {
         if (selectedexpens) {
           res = await fetch(
@@ -78,6 +87,7 @@ const Expenseform = () => {
 
         const data = res.json();
         if (res.ok) {
+           toast.dismiss(loading)
           setselectedexpense(null); // Clear selected expense after successful update/create
           setAmount("");
           setDescription("");
@@ -127,23 +137,7 @@ const Expenseform = () => {
   };
   //
 
-  const Expensesdatalist =
-    Expenses &&
-    Expenses.map((item) => (
-      <>
-        <tr className={classes.tablerow}>
-          <td>{item.Description}</td>
-          <td>{item.Amount}</td>
-          <td>{item.Category}</td>
-          <td>
-            <button onClick={EditHandler.bind(null, item.key)}>Edit</button>
-          </td>
-          <td>
-            <button onClick={deleteHandler.bind(null, item.key)}>Delete</button>
-          </td>
-        </tr>
-      </>
-    ));
+  
 
   return (
     <>
@@ -189,16 +183,7 @@ const Expenseform = () => {
         </div>
       </form>
 
-      <table>
-        <thead>
-          <th>Description</th>
-          <th>Amount</th>
-          <th>Category</th>
-          <th>x</th>
-          <th>x</th>
-        </thead>
-        <tbody>{Expensesdatalist}</tbody>
-      </table>
+      <ExpenseList EditHandler={EditHandler} deleteHandler={deleteHandler}></ExpenseList>
       <ToastContainer className="toast-container" />
     </>
   );

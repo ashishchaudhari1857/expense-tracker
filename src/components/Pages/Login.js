@@ -5,7 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import classes from "./login.module.css";
 import { NavLink, json , useNavigate} from "react-router-dom";
 import { useSelector,useDispatch } from "react-redux";
-import { authActions } from "./LoginSlice/LoginSlice";
+import { authActions } from "./slices/LoginSlice";
 const Login = () => {
    const dispatch=useDispatch();
   const navigate=useNavigate();

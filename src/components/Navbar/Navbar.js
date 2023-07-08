@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 import React, { useState } from "react";
 import classes from "./Navbar.module.css";
  import { useSelector,useDispatch } from "react-redux";
- import { authActions } from "../Pages/LoginSlice/LoginSlice";
+ import { authActions } from "../Pages/slices/LoginSlice";
 
 const Navbar = () => {
   const [flag, setFlag] = useState(false);// this is for dropdown
