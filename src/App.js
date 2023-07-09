@@ -7,13 +7,15 @@ import Home from "./components/Pages/Home";
 import Profile from "./components/Pages/Profile";
 import Expenseform from "./components/Pages/Expenseform";
 import { useSelector,useDispatch } from "react-redux";
+import  './App.css'
 function App() {
   const isLogged=useSelector((state)=>state.Auth.token)
+  const themeChanger=useSelector((state)=>state.Theme.themeChanger)
   return (
 
-    <>
+    <div className={ themeChanger? "theme":""}> 
       <Navbar></Navbar>
-      <Routes>
+      <Routes>  
         <Route index element={<Home></Home>}></Route>
         <Route path="/login" element={<Login></Login>}></Route>
 
@@ -27,7 +29,7 @@ function App() {
           </>
         )}
       </Routes>
-    </>
+      </div>
   );
 }
 

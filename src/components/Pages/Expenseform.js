@@ -6,8 +6,10 @@ import "react-toastify/dist/ReactToastify.css";
 import { useSelector ,useDispatch } from "react-redux";
 import { ExpenseActions } from "./slices/ExpenseSlice";
 import ExpenseList from "./ExpenseList/ExpenseList";
+import { ThemeActions } from "./slices/Themeslice";
 const Expenseform = () => {
   const Expenses =useSelector((state)=>state.Exp.expenses);
+  const themeChanger =useSelector((state)=>state.Theme.themeChanger)
   const dispatch=useDispatch();
   const [amount, setAmount] = useState("");
   const [description, setDescription] = useState("");
@@ -141,6 +143,10 @@ const Expenseform = () => {
 
   return (
     <>
+    <div>
+      <button  className={classes.btn} style={{marginLeft:"10%" ,fontSize:"2.5rem"}} onClick={() => dispatch(ThemeActions.themechange())}>{themeChanger ? "light" : "Dark"}</button>
+
+    </div>
       <form className={classes.form} onSubmit={submithandler}>
         <h1 style={{ textAlign: "center" }}>Expenses</h1>
 
@@ -153,6 +159,7 @@ const Expenseform = () => {
             placeholder: "Amount",
             value: amount,
             onChange: (e) => setAmount(e.target.value),
+            style:{ backgroundColor: themeChanger ? "white" : "" } // here we passing already inside the object so no need of style={{}}
           }}
         ></Input>
         <Input
@@ -164,6 +171,8 @@ const Expenseform = () => {
             placeholder: "Description",
             value: description,
             onChange: (e) => setDescription(e.target.value),
+            style:{ backgroundColor: themeChanger ? "white" : "" }
+            
           }}
         ></Input>
         <select
@@ -177,7 +186,7 @@ const Expenseform = () => {
         </select>
 
         <div>
-          <button className={classes.btn} type="submit">
+          <button className={classes.btn} type="submit" >
             Add Expenses
           </button>
         </div>
