@@ -76,7 +76,10 @@ useEffect(() => {
       Amount: amount,
       Category: category,
     };
-
+    if(description.length <1 || amount<1 ||  category.length<1 ){
+         toast.warning("enter the valid details")
+         return;
+    }
     const postdata = async () => {
       let res;
   const  loading =toast.info("loading....")
