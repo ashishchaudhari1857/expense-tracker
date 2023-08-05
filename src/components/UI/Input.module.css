@@ -1,0 +1,36 @@
+.input {
+  display: block;
+  width: 30rem;
+  margin: 1rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid #c6a7a7;
+}
+
+.input label {
+  display: block;
+  width: 100%;
+  font-weight: bold;
+  text-align: center;
+  font-size: 1.6rem;
+}
+
+.input input {
+  width: 100%;
+  height: 3rem;
+  border-radius: 14px;
+  background-color: #f7f7f783;
+  border: 1px solid black;
+  font: inherit;
+  padding-left: 0.5rem;
+  text-align: center;
+  font-size: 2rem;
+}
+
+@media (max-width: 650px) {
+  .input {
+    width: 25rem;
+  }
+  .input input {
+    font-size: 1.5rem;
+  }
+}

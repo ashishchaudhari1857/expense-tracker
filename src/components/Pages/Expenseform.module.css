@@ -1,0 +1,99 @@
+.select {
+  width: 28rem;
+  display: block;
+  margin: auto;
+  border-radius: 14px;
+  margin-left: 20px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+option {
+  text-align: center;
+}
+.form {
+  display: block;
+  width: 35rem;
+  margin: auto;
+  justify-content: space-around;
+  border: 1px solid black;
+  margin-top: 2rem;
+  border-radius: 5px;
+  box-shadow: 0px 0px 2px 2px rgb(85, 79, 79);
+}
+.exbar{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background:linear-gradient(black , rgb(155, 136, 136));
+  height: 4rem;
+}
+.exbar a{
+  font-size: 2rem;
+margin-top: 1%;
+margin-right: 3%;
+color: white;
+
+}
+.exbar a:hover{
+  color: red;
+}
+.exbar button{
+  border-radius: 5px;
+  margin-top: 1%;
+  margin-left: 2%;
+  font-size: 2rem;
+}
+.btn {
+  display: flex;
+  background-color: rgb(147, 179, 147);
+  margin: auto;
+  margin-top: 2rem;
+  border-radius: 5px;
+  font-size: 1.8rem;
+  margin-bottom: 3%;
+}
+table {
+  font-size: 2rem;
+  border: 1px solid black;
+  margin: auto;
+  margin-top: 3rem;
+  width: 60rem;
+  box-shadow: 0px 0px 3px 2px ;
+}
+
+td {
+  border: 1px solid rgb(134, 69, 69);
+  text-align: center;
+}
+th {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  border: 1px solid rgb(27, 25, 25);
+  text-align: center;
+}
+
+@media (max-width: 670px) {
+  table {
+    width: 35rem;
+    font-size: 1.5rem;
+  }
+  .select{
+width: 23rem;
+  }
+  .form{
+    width: 28rem;
+  }
+  .exbar{
+    justify-content: space-between;
+    align-items: center;
+    
+  }
+  .exbar a{
+    margin: 0;
+    font-size: 1.8em;
+    
+  }
+  .exbar button{
+    margin: 0;
+    font-size: 1.8em;
+
+  }
+}

@@ -1,0 +1,60 @@
+.form{
+    background-color:rgb(255 255 255 / 19%);
+    position:absolute;
+    height: 29rem;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    padding: 2rem ;
+    border-radius: 14px;
+    box-shadow: 0px 0px 2px ;
+}
+
+.bimg{
+    object-fit: cover;
+    height: 60rem;
+    width: 100%;
+
+}
+.action{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 2rem;
+    padding: auto;
+    margin: 1rem;
+    gap:0.8rem;
+}
+.btn{
+    font-size: 1.7rem;
+    border-radius: 5px;
+    color:#120ef7;   
+}
+.isSignIn .btn{
+    border: none;
+    background-color:  transparent;
+    font-size: 2rem;
+}
+.isSignIn{
+    background-color: transparent;
+    position:absolute;
+    top:85%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    padding: 1rem ;
+    width:35rem;
+    border-radius: 14px;
+    box-shadow: 0px 0px 2px 1px white;
+    display: flex;
+    justify-content: center;
+}
+ 
+@media (max-width:650px) {
+   .form{
+    padding: 0%;
+   } 
+   .isSignIn{
+    width: 25rem;
+   }
+}
