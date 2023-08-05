@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import classes from "./Navbar.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import { authActions } from "../Pages/slices/LoginSlice";
-
+import { ThemeActions } from "../Pages/slices/Themeslice";
 const Navbar = () => {
   const [flag, setFlag] = useState(false); // this is for dropdown
   const dispatch = useDispatch();
@@ -31,26 +31,37 @@ const Navbar = () => {
                 </NavLink>
               )}
             </li>
-
+            <li>
+              {isLogged && (
+                <NavLink to="/expenses" className={classes.NavLink}>
+                Expenses
+                </NavLink>
+              )}
+            </li>
             <li>
               {isLogged && (
                 <NavLink
                   to="/login"
-                  onClick={() => dispatch(authActions.logout())}
+                  onClick={() => {
+                    localStorage.removeItem("theme")
+                    dispatch(ThemeActions.user({}))
+                    dispatch(authActions.logout())}
+                  }
                   className={classes.NavLink}
                 >
                   logout
                 </NavLink>
               )}
             </li>
+           
             <li>
               {isLogged && (
                 <NavLink to="/profile" className={classes.NavLink}>
-                  <img
+                 {  user.photoUrl?<img
                     className={classes.profile_icon}
                     src={user.photoUrl}
                     alt=""
-                  ></img>
+                  ></img>:<ion-icon name="contact"></ion-icon>}
                 </NavLink>
               )}
             </li>

@@ -1,9 +1,11 @@
 import React from 'react';
 import classes from  './footer.module.css'
+import { useSelector } from 'react-redux';
 const Footer = () => {
+  const flag=useSelector((state)=>state.Theme.themeChanger)
   return (
     <div className={classes.Footer }>
-        <ul style={{fontSize:'1.5rem' ,fontFamily:"sans-serif" ,color:"white"}}>
+        <ul style={{fontSize:'1.5rem' ,padding:"1%",fontFamily:"sans-serif" ,color:"white"}}>
             <li>Term Of use</li>
             <li>About</li>
             <li>Privacy-Policy</li>
@@ -18,10 +20,10 @@ const Footer = () => {
          inquiry will help me provide you with relevant information and insights.
         </div>
       <ul>
-        <li><ion-icon name="logo-facebook"></ion-icon></li>
-        <li><ion-icon name="logo-instagram"></ion-icon></li>
-        <li><ion-icon name="home"></ion-icon></li>
-        <li><ion-icon name="logo-linkedin"></ion-icon></li>
+        <li  style={{color: flag&&"gray"}}><ion-icon name="logo-facebook"></ion-icon></li>
+        <li  style={{color: flag&&"gray"}}><ion-icon name="logo-instagram"></ion-icon></li>
+        <li  style={{color: flag&&"gray"}}><ion-icon name="home"></ion-icon></li>
+        <li  style={{color: flag&&"gray"}}><ion-icon name="logo-linkedin"></ion-icon></li>
       </ul>
     </div>
   );

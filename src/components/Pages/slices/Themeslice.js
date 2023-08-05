@@ -2,7 +2,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState ={
-    themeChanger:false,
+    themeChanger:localStorage.getItem("theme"),
     user:{},
 }
 
@@ -12,14 +12,17 @@ const ThemeSlice=createSlice({
     reducers:{
         themechange:(state)=>{
             state.themeChanger=!state.themeChanger;
+            localStorage.setItem("theme", state.themeChanger)
         },
         premium:(state)=>{
             console.log("call theme")
+            localStorage.setItem("theme", true)
             state.themeChanger= true;
         },
         user:(state, actions)=>{
               state.user=actions.payload;
-        }
+        },
+       
     }
 
 })

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState ,useRef} from "react";
 import Input from "../UI/Input";
 import classes from "./Expenseform.module.css";
 import { ToastContainer, toast } from "react-toastify";
@@ -8,6 +8,7 @@ import { ExpenseActions } from "./slices/ExpenseSlice";
 import ExpenseList from "./ExpenseList/ExpenseList";
 import { ThemeActions } from "./slices/Themeslice";
 const Expenseform = () => {
+  const downloadLinkRef = useRef(null);
   const Expenses =useSelector((state)=>state.Exp.expenses);
   const themeChanger =useSelector((state)=>state.Theme.themeChanger)
   const dispatch=useDispatch();
@@ -17,6 +18,21 @@ const Expenseform = () => {
   const [selectedexpens, setselectedexpense] = useState(null);
 const id=useSelector((state)=>state.Auth.userid)
 console.log("pant",id)
+
+
+useEffect(() => {
+  const header = ["Description", "Amount", "Category"];
+
+  function makeCSV(rows) {
+    const data = [header, ...rows.map((r) => [r.Description, r.Amount, r.Category])];
+  
+    return data.map((row) => row.join(",")).join("\n")
+  }
+
+  const bob = new Blob([makeCSV([header, ...Expenses])], { type: 'text/csv' });
+  downloadLinkRef.current.href = URL.createObjectURL(bob);
+}, [Expenses]);
+
 
   //
   const getdata = async () => {
@@ -145,10 +161,11 @@ console.log("pant",id)
 
   return (
     <>
-    <div>
-      <button  className={classes.btn} style={{marginLeft:"10%" ,fontSize:"2.5rem"}} onClick={() => dispatch(ThemeActions.themechange())}>{themeChanger ? "light" : "Dark"}</button>
-
+    <div className={classes.exbar}>
+      <button  onClick={() => dispatch(ThemeActions.themechange())}>{themeChanger ? "light" : "Dark"}</button>
+      <a ref={downloadLinkRef} download="file.csv"> Click here to Download Expenselist</a>
     </div>
+
       <form className={classes.form} onSubmit={submithandler}>
         <h1 style={{ textAlign: "center" }}>Expenses</h1>
 

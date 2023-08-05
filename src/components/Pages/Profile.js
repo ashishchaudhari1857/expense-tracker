@@ -7,6 +7,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { ThemeActions } from "./slices/Themeslice";
 
 const Profile = () => {
+  const flag=useSelector((state)=>state.Theme.themeChanger)
+
   const dispatch =useDispatch();
   const token = useSelector((state) => state.Auth.token);
   const navigate = useNavigate();
@@ -102,12 +104,13 @@ const Profile = () => {
       if (!res.ok) 
       {
         throw Error(data.error.message);
-
-      } 
-   
+      }else{
+        toast.success("update successfully")
+      }
     } catch (err) {
-      toast.error(err.message);
+      toast.error(" thred", err.message);
     }
+
   };
   const submitHandler = (e) => {
     e.preventDefault();
@@ -124,7 +127,7 @@ const Profile = () => {
         <div className={classes.profile}>
           <div className={classes.quote}>learn to never quit</div>
           <div>
-            <p className={classes.note}>
+            <p className={classes.note} style={{backgroundColor: flag&&"black"}}>
               your profile is 64% completed.A complete profile has higher chance
               to land a job
               <NavLink to="/profile">Complete Profile</NavLink>
@@ -136,14 +139,14 @@ const Profile = () => {
           <h1 style={{fontFamily:"revert" ,fontSize:"3rem"}}>Your Profile</h1>
 
             <img src={user.photoUrl} alt="loading"></img>
-               <h2>{user.displayName}</h2>
-               <h3>{user.email}</h3>
+               <h2 style={{marginTop:"5px", fontSize:"2rem"}}>{user.displayName}</h2>
+               <h2 style={{marginTop:"5px"}}>{user.email}</h2>
                <div>
-        <button onClick={verification}>Click here to verify email</button>
+        <button  style={{marginTop:"5px"}}onClick={verification}>Click here to verify email</button>
       </div>
           </section>
           <section>
-            <form className={classes.form} onSubmit={submitHandler}>
+            <form className={classes.form} style={{color: flag&&"black"}} onSubmit={submitHandler}>
               <div className={classes.infocontainer}>
                  <div className={classes.label}>
                   Full Name
@@ -203,7 +206,7 @@ const Profile = () => {
                 update
               </button>
             
-              <ion-icon  onClick={() => navigate("/home")}  name="arrow-round-back"></ion-icon>
+              <ion-icon  style={{color: flag&&"gray"}} onClick={() => navigate("/home")}  name="arrow-round-back"></ion-icon>
               
             </form>
           </section>

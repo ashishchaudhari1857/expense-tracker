@@ -3,8 +3,9 @@
   margin-top: 2rem;
   background-color: #e0e0e054;
   width: 60rem;
-  box-shadow:  0px 0px 5px;
+  box-shadow:  0px 0px 6px;
   padding: 5px;
+  border-radius: 5px;
 
 }
 .profile_container{
@@ -28,7 +29,9 @@
   border-radius: 50%;
   height: 15rem;
   width:15rem;
+  margin-bottom:1%;
   object-fit: cover;
+  box-shadow: 0px 0px 2px 2px;
 }
 
 input{
@@ -38,6 +41,7 @@ input{
   background-color: transparent;
   text-align: center;
   border: 1px solid black;
+  border-radius: 5px;
   
 
 }
@@ -79,6 +83,7 @@ input{
   width: 40rem;
   background-color: pink;
   border-radius: 14px;
+  box-shadow: 0px 0px 2px 2px white;
 }
 .quote {
   font-size: 3rem;
