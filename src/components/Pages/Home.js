@@ -1,59 +1,80 @@
-import React from 'react';
-import classes from './Home.module.css'
-import { Link, NavLink } from 'react-router-dom';
-import { ToastContainer, toast } from "react-toastify"
+import React from "react";
+import classes from "./Home.module.css";
+import { Link, NavLink } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useSelector,useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from "react-redux";
 
 const Home = () => {
-  const token =useSelector((state)=>state.Auth.token)
-  const verification=async()=>{
-    try{
-      const res= await fetch("https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyDECVREeZXqI7KQqMpsiP2L-pM5eyQqU9s",{
-        method:'POST',
-        body:JSON.stringify({
-          idToken:token,
-          requestType:'VERIFY_EMAIL'
-        }),
-        headers:{
-          'Content-Type': 'application/json'
-        }
-      })
-      const data=await res.json();
-      if(res.ok){
-  
-        toast.success("verification mail send successfully")
-      }else{
-        throw Error(data.error.message)
-      }
-  
-    }catch(err)
-    {
-      toast.error(err.message)
-  
-    }
-  
-  }
-  
   return (
     <>
-    <div className={classes.homehead}>
-      <p>Welcome to Expense Tracker</p>
-      <p className={classes.note}>Your Profile is incomplete.&nbsp;
-      <NavLink  to="/profile"  style={{color:"blue"}} >complete now</NavLink></p>
-    </div>
+      <div className={classes.homehead}>
+        <p>Money often costs too much</p>
+        <p className={classes.note}>
+          Your Profile is incomplete.&nbsp;
+          <NavLink to="/profile" style={{ color: "blue" }}>
+            complete now
+          </NavLink>
+        </p>
+      </div>
 
-    <div>
-      <button onClick={verification}>Click here to verify email</button>
-    </div>
-    <div>
-     <Link to="/expenses"> <button>Click here to AddExpenses</button></Link> 
-    </div>
-    <ToastContainer  className="toast-container"/>
+      <div className={classes.container}>
+        <div>
+          <Link to="/expenses">
+            {" "}
+            <button className={classes.btn}>Click here to AddExpenses</button>
+          </Link>
+        </div>
+        <section className={classes.content}>
+          <div className={classes.Home_headline}>
+            <img className={classes.wallet} src="/imgwallet.png"></img>
+            wallet
+            <h1>Keep All your Finance</h1>
+            <img
+              src="/moneypig.png"
+              style={{ marginLeft: "20%" }}
+              className={classes.pig}
+            ></img>
+            <h5 style={{ marginLeft: "20%", color: "purple" }}>
+              Save and Secure
+            </h5>
+          </div>
 
+          <div>
+            <img src="/imgmobile2.png"></img>
+            <img className={classes.mobile1} src="/mobileimg.png"></img>
+            <h1 className={classes.invitation}>What Are You Waiting for ???</h1>
+            <NavLink to="/login">
+              <button
+                style={{
+                  marginLeft: "20%",
+                  fontSize: "1.5rem",
+                  backgroundColor: "skyblue",
+                  padding: "2px",
+                }}
+              >
+                Enroll Now{" "}
+              </button>
+            </NavLink>
+            <p style={{ fontSize: "1.5rem", fontFamily: "monospace" }}>
+              "At our core, we are dedicated to guiding you on a transformative
+              journey towards financial empowerment.
+            </p>
+          </div>
+        </section>
+        <div className={classes.images}>
+          <img className={classes.save1} src="/save1.png"></img>
+          <h3>
+            Investing in Your Future, Navigating Your Finances Today. "Discover
+            the Power of Smart Financial Choices – Your Journey to Prosperity
+            Begins Here
+          </h3>
+          <img className={classes.track} src="/track.png"></img>
+        </div>
+        <ToastContainer className="toast-container" />
+      </div>
     </>
   );
-  
 };
 
 export default Home;

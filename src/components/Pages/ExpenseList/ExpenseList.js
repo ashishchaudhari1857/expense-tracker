@@ -16,7 +16,8 @@ const ExpenseList = (props) => {
   
     function makeCSV(rows) {
       const data = [header, ...rows.map((r) => [r.Description, r.Amount, r.Category])];
-      return data.map((row) => row.join(",")).join("\n");
+    
+      return data.map((row) => row.join(",")).join("\n")
     }
   
     const bob = new Blob([makeCSV([header, ...Expenses])], { type: 'text/csv' });
@@ -29,7 +30,7 @@ const ExpenseList = (props) => {
     Expenses &&
     Expenses.map((item) => (
       <>
-        <tr className={classes.tablerow} key={item.key}>
+        <tr className={classes.tablerow} key={item.key} >
           <td>{item.Description}</td>
           <td>{item.Amount}</td>
           <td>{item.Category}</td>

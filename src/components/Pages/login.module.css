@@ -1,5 +1,5 @@
 .form{
-    background-color:rgb(104, 72, 104);
+    background-color:rgb(255 255 255 / 19%);
     position:absolute;
     height: 29rem;
     top:50%;
@@ -7,9 +7,7 @@
     transform: translate(-50%,-50%);
     padding: 2rem ;
     border-radius: 14px;
-    box-shadow: 0px 0px 2px 2px;
-
-
+    box-shadow: 0px 0px 2px ;
 }
 
 .bimg{
@@ -31,7 +29,7 @@
 .btn{
     font-size: 1.7rem;
     border-radius: 5px;
-    
+    color:#120ef7;   
 }
 .isSignIn .btn{
     border: none;
@@ -41,17 +39,15 @@
 .isSignIn{
     background-color: transparent;
     position:absolute;
-    top:90%;
+    top:85%;
     left:50%;
     transform: translate(-50%,-50%);
     padding: 1rem ;
     width:35rem;
     border-radius: 14px;
-    box-shadow: 0px 0px 2px 2px;
+    box-shadow: 0px 0px 2px 1px white;
     display: flex;
     justify-content: center;
-   
-
 }
  
 @media (max-width:650px) {

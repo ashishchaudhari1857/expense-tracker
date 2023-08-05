@@ -3,7 +3,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: gray;
+  background-color: #5ac8fa;
   padding: 0.48rem;
   z-index: 999;
 }
@@ -25,7 +25,7 @@
   display: inline-block;
   text-transform: uppercase;
   text-decoration: none;
-  font-size: 1.7rem;
+  font-size: 2rem;
   transition: all 0.5s;
   color: black;
 }
@@ -33,7 +33,7 @@
 .NavLink:active {
   color: green;
 }
-
+ 
 ion-icon {
   height: 3rem;
   width: 3rem;
@@ -47,8 +47,18 @@ ion-icon[name="close"] {
   display: none;
 }
 
+.profile_icon{
+  height: 6rem;
+  width: 7rem;
+  border-radius: 50%;
+  object-fit: cover;
+
+}
 /* 980px */
 @media (max-width: 62em) {
+  .header h1{
+    text-align: center;
+  }
  
   .mobile_nav_btn {
     display: block;

@@ -2,88 +2,122 @@ import classes from "./Profile.module.css";
 import React, { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { NavLink, json ,useNavigate} from "react-router-dom";
-import { useSelector,useDispatch } from "react-redux";
+import { NavLink, json, useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { ThemeActions } from "./slices/Themeslice";
 
 const Profile = () => {
-  const  token=useSelector((state)=>state.Auth.token)
+  const dispatch =useDispatch();
+  const token = useSelector((state) => state.Auth.token);
+  const navigate = useNavigate();
+  const [user, setuser] = useState({
+    displayName: "",
+  photoUrl: "",
+  });
+  
+  const Nameonchamgehandler = (e) => {
+    setuser((prevUser) => ({
+      ...prevUser,
+      displayName: e.target.value,
+    }));
+  };
+  const Urlonchamgehandler = (e) => {
+    setuser((prevUser) => ({
+      ...prevUser,
+      photoUrl: e.target.value,
+    }));
+  };
 
-  const navigate =useNavigate();
-  const [user ,setuser]=useState([])
-  const   Nameonchamgehandler=(e)=>{
-   const updatedata={...user ,displayName:e.target.value}
-     setuser(updatedata)
-  }
-  const Urlonchamgehandler=(e)=>{
-    const updatedata={...user ,photoUrl:e.target.value}
-    setuser(updatedata)
-  }
-
-  const  userdetail=async()=>{
-    try{
-   const res = await fetch("https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyDECVREeZXqI7KQqMpsiP2L-pM5eyQqU9s",{
-    method:'POST',
-    body:JSON.stringify({
-      idToken:token,
-    }),
-    headers:{
-      'Content-Type': 'application/json'
+  const verification = async () => {
+    try {
+      const res = await fetch(
+        "https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyDECVREeZXqI7KQqMpsiP2L-pM5eyQqU9s",
+        {
+          method: "POST",
+          body: JSON.stringify({
+            idToken: token,
+            requestType: "VERIFY_EMAIL",
+          }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      const data = await res.json();
+      if (res.ok) {
+        toast.success("verification mail send successfully");
+      } else {
+        throw Error(data.error.message);
+      }
+    } catch (err) {
+      toast.error(err.message);
     }
-   })
-   const data=await res.json();
+  };
 
-   if(res.ok){
-    console.log(data.users)
-    setuser(data.users[0])
+  const userdetail = async () => {
+    try {
+      const res = await fetch(
+        "https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyDECVREeZXqI7KQqMpsiP2L-pM5eyQqU9s",
+        {
+          method: "POST",
+          body: JSON.stringify({
+            idToken:token,
+          }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      const data = await res.json();
+
+      if (res.ok) {
+        console.log("this is data" ,data);
+        setuser(data.users[0]);
+        dispatch(ThemeActions.user(data.users[0]))
+      } else {
+        throw Error(data.error.message);
+      }
+    } catch (err) {
+      toast.error(err.message);
+    }
+  };
+  const update = async () => {
+    try {
+      const res = await fetch(
+        "https://identitytoolkit.googleapis.com/v1/accounts:update?key=AIzaSyDECVREeZXqI7KQqMpsiP2L-pM5eyQqU9s",
+        {
+          method: "POST",
+          body: JSON.stringify({
+            idToken:token,
+            displayName: user.displayName,
+            photoUrl: user.photoUrl,
+            returnSecureToken: true,
+          }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      const data = res.json();
+      if (!res.ok) 
+      {
+        throw Error(data.error.message);
+
+      } 
    
-  }
-    else{
-    throw Error(data.error.message)
-
-   }
-   }
-
-    catch(err){
-     toast.error(err.message)
+    } catch (err) {
+      toast.error(err.message);
     }
-  } 
-  useEffect(()=>{  
-userdetail()   
-  },[])   
+  };
   const submitHandler = (e) => {
     e.preventDefault();
-    const EnterName = e.target.name.value;
-    const EnterUrl = e.target.url.value;
-    e.target.reset()
-    const update = async () => {
-      try {
-        const res = await fetch(
-          "https://identitytoolkit.googleapis.com/v1/accounts:update?key=AIzaSyDECVREeZXqI7KQqMpsiP2L-pM5eyQqU9s",
-          {
-            method: "POST",
-            body: JSON.stringify({
-              idToken: token,
-              displayName: EnterName,
-              photoUrl: EnterUrl,
-              returnSecureToken: true,
-            }),
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        );
-        const data = res.json();
-        if (res.ok) {
-          toast.success("profile update successfully");
-        } else {
-          throw Error(data.error.message);
-        }
-      } catch (err) {
-        toast.error(err.message);
-      }
-    };
     update();
   };
+
+  useEffect(() => {
+    userdetail();
+     { (user.displayName && user.photoUrl )&& update()}
+  }, []);
   return (
     <>
       <div>
@@ -97,30 +131,85 @@ userdetail()
             </p>
           </div>
         </div>
+        <div className={classes.profile_container}>
+          <section className={classes.section1}>
+          <h1 style={{fontFamily:"revert" ,fontSize:"3rem"}}>Your Profile</h1>
 
-        <form className={classes.form} onSubmit={submitHandler}>
-          <div>
-            <label>
-              <ion-icon name="contact"></ion-icon>
-              Full Name
-            </label>
-            <input type="text"  value={user.displayName} onChange={Nameonchamgehandler} name="name"></input>
-          </div>
-          <div>
-            <label>
-              <ion-icon name="link"></ion-icon>
-              Profile photo URL
-            </label>
-            <input type="text"  value={user.photoUrl}  onChange={Urlonchamgehandler} name="url"></input>
-          </div>
-          <button className={classes.btn} type="submit">
-            update
-          </button>
-        </form>
-        <div className={classes.backbtn}>
-          <button className={classes.btn} style={{width:"50%",justifyContent:"center"}} onClick={()=>navigate('/home')}>Back</button>
+            <img src={user.photoUrl} alt="loading"></img>
+               <h2>{user.displayName}</h2>
+               <h3>{user.email}</h3>
+               <div>
+        <button onClick={verification}>Click here to verify email</button>
+      </div>
+          </section>
+          <section>
+            <form className={classes.form} onSubmit={submitHandler}>
+              <div className={classes.infocontainer}>
+                 <div className={classes.label}>
+                  Full Name
+                  </div>
+                  <div>
+                <input
+                  type="text"
+                  value={user.displayName}
+                  onChange={Nameonchamgehandler}
+                  name="name"
+                ></input>
+                </div>
+              </div>
+              <div>
+              <div className={classes.infocontainer}>
+                 <div className={classes.label}>
+                 Profile photo url
+                  </div>
+                  <div>
+                <input
+                  type="text"
+                  value={user.photoUrl}
+                  onChange={Urlonchamgehandler}
+                  name="url"
+                  style={{overflow:"hidden"}}
+                ></input>
+                </div>
+              </div>
+              </div>
+              <div>
+              <div className={classes.infocontainer}>
+                 <div className={classes.label}>
+                 email
+                  </div>
+                  <div>
+                <input
+                  type="text"
+                  value={user.email}
+                ></input>
+                </div>
+              </div>
+              </div>
+              <div>
+              <div className={classes.infocontainer}>
+                 <div className={classes.label}>
+                 emailVerified
+                  </div>
+                  <div>
+                <input
+                  type="text"
+                  value={user.emailVerified}
+                ></input>
+                </div>
+              </div>
+              </div>
+              <button className={classes.btn} type="submit">
+                update
+              </button>
+            
+              <ion-icon  onClick={() => navigate("/home")}  name="arrow-round-back"></ion-icon>
+              
+            </form>
+          </section>
         </div>
       </div>
+    
       <ToastContainer className="toast-container" />
     </>
   );

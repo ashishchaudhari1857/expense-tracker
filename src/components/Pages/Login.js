@@ -39,7 +39,8 @@ const Login = () => {
 
             const data = await res.json();
             console.log(data.idToken)
-            dispatch(authActions.login(data.idToken))
+            const { idToken: token, email } = data;
+            dispatch(authActions.login({ token, id: email }));
             if (res.ok) {
 
               toast.success("login successfully");
@@ -88,9 +89,9 @@ const Login = () => {
   return (
     <>
       <div style={{ position: "relative" }}>
-        <img src="bckimg.jpg" alt="loading" className={classes.bimg}></img>
+        <img src="bgggg.jpg" alt="loading" className={classes.bimg}></img>
         <form className={classes.form} onSubmit={submithandler}>
-          <h1 style={{ textAlign: "center" }}>{flag ? "Login" : "Sign Up"}</h1>
+          <h1 style={{ textAlign: "center", fontSize:"2.5rem" , fontFamily:"monospace"}}>{flag ? "Login" : "Sign Up"}</h1>
           <Input
             
             input={{

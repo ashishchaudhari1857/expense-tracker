@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState ={
     themeChanger:false,
+    user:{},
 }
 
 const ThemeSlice=createSlice({
@@ -15,6 +16,9 @@ const ThemeSlice=createSlice({
         premium:(state)=>{
             console.log("call theme")
             state.themeChanger= true;
+        },
+        user:(state, actions)=>{
+              state.user=actions.payload;
         }
     }
 

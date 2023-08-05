@@ -15,13 +15,15 @@ const Expenseform = () => {
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("Food");
   const [selectedexpens, setselectedexpense] = useState(null);
+const id=useSelector((state)=>state.Auth.userid)
+console.log("pant",id)
 
   //
   const getdata = async () => {
     const loading =toast.info("loading....")
     try {
       const res = await fetch(
-        "https://expense-tracker-8c9e9-default-rtdb.firebaseio.com/Expenses.json"
+        `https://expense-tracker-8c9e9-default-rtdb.firebaseio.com/Expenses/${id}.json`,
       );
       const data = await res.json();
       const arraydata = [];
@@ -65,7 +67,7 @@ const Expenseform = () => {
       try {
         if (selectedexpens) {
           res = await fetch(
-            `https://expense-tracker-8c9e9-default-rtdb.firebaseio.com/Expenses/${selectedexpens.key}.json`,
+            `https://expense-tracker-8c9e9-default-rtdb.firebaseio.com/Expenses/${id}/${selectedexpens.key}.json`,
             {
               method: "PATCH",
               body: JSON.stringify(expense),
@@ -76,7 +78,7 @@ const Expenseform = () => {
           );
         } else {
           res = await fetch(
-            "https://expense-tracker-8c9e9-default-rtdb.firebaseio.com/Expenses/.json",
+            `https://expense-tracker-8c9e9-default-rtdb.firebaseio.com/Expenses/${id}.json`,
             {
               method: "POST",
               body: JSON.stringify(expense),
@@ -109,7 +111,7 @@ const Expenseform = () => {
   const deleteHandler = async (key) => {
     try {
       const res = await fetch(
-        `https://expense-tracker-8c9e9-default-rtdb.firebaseio.com/Expenses/${key}.json`,
+        `https://expense-tracker-8c9e9-default-rtdb.firebaseio.com/Expenses/${id}/${key}.json`,
         {
           method: "DELETE",
           headers: {

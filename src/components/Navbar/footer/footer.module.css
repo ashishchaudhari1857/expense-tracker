@@ -1,0 +1,35 @@
+ul{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    list-style: none;
+    margin-top: 1%;
+}
+
+.Footer{
+    background-color: rgb(12, 1, 1);
+    margin-bottom: 0;
+}
+.text{
+  font-size: 1.5rem;
+  color: rgb(96, 101, 105);
+  text-align: center;
+  margin-top: 1%;
+}
+ion-icon{
+    background-color:rgb(152, 158, 158);
+    border-radius: 50%;
+    
+}
+ion-icon:hover{
+    background-color: red;
+}
+
+@media (max-width:700px) {
+    .text ,ul{
+      margin-top: 3%;  
+    }
+    
+}
+

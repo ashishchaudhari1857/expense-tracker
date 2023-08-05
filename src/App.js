@@ -7,6 +7,7 @@ import Home from "./components/Pages/Home";
 import Profile from "./components/Pages/Profile";
 import Expenseform from "./components/Pages/Expenseform";
 import { useSelector,useDispatch } from "react-redux";
+import Footer from "./components/Navbar/footer/Footer";
 import  './App.css'
 function App() {
   const isLogged=useSelector((state)=>state.Auth.token)
@@ -29,6 +30,7 @@ function App() {
           </>
         )}
       </Routes>
+      <Footer></Footer>
       </div>
   );
 }
