@@ -19,7 +19,7 @@ function App() {
       <Navbar></Navbar>
       <Routes>  
         <Route path="/login" element={<Login></Login>}></Route>
-        <Route index element={<Login></Login>}></Route>
+        {!isLogged?<Route index element={<Login></Login>}></Route>:<Route index element={<Home></Home>}></Route>}
         <Route path="/package" element={<Package></Package>}></Route>
         {isLogged && (
           <>
