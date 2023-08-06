@@ -22,7 +22,6 @@ const Home = () => {
       <div className={classes.container}>
         <div>
          { isLogged && <Link to="/expenses">
-            {" "}
             <button className={classes.btn}>Click here to AddExpenses</button>
           </Link>}
         </div>
