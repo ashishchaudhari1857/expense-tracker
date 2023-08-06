@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 const Home = () => {
   const  isLogged =useSelector((state)=>state.Auth.isLogged)
+  console.log("here" ,isLogged)
   return (
     <>
       <div className={classes.homehead}>
@@ -44,7 +45,7 @@ const Home = () => {
             <img src="/imgmobile2.png"></img>
             <img className={classes.mobile1} src="/mobileimg.png"></img>
             <h1 className={classes.invitation}>What Are You Waiting for ???</h1>
-            <NavLink to="/login">
+            <NavLink to="/package">
               <button
                 style={{
                   marginLeft: "20%",
