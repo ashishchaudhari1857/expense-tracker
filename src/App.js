@@ -8,6 +8,7 @@ import Profile from "./components/Pages/Profile";
 import Expenseform from "./components/Pages/Expenseform";
 import { useSelector,useDispatch } from "react-redux";
 import Footer from "./components/Navbar/footer/Footer";
+import Package from "./components/Pages/Package";
 import  './App.css'
 function App() {
   const isLogged=useSelector((state)=>state.Auth.token)
@@ -17,10 +18,9 @@ function App() {
     <div className={ themeChanger? "theme":""}> 
       <Navbar></Navbar>
       <Routes>  
-        <Route index element={<Home></Home>}></Route>
         <Route path="/login" element={<Login></Login>}></Route>
-
-        {/* <Route path="*" element={<Login></Login>}> </Route> */}
+        <Route index element={<Login></Login>}></Route>
+        <Route path="/package" element={<Package></Package>}></Route>
         {isLogged && (
           <>
             <Route path="Home" element={<Home></Home>}></Route>
