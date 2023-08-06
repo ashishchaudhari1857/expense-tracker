@@ -6,6 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useSelector, useDispatch } from "react-redux";
 
 const Home = () => {
+  const  islogin =useSelector((state)=>state.Auth.isLogged)
   return (
     <>
       <div className={classes.homehead}>
@@ -20,10 +21,10 @@ const Home = () => {
 
       <div className={classes.container}>
         <div>
-          <Link to="/expenses">
+         { islogin && <Link to="/expenses">
             {" "}
             <button className={classes.btn}>Click here to AddExpenses</button>
-          </Link>
+          </Link>}
         </div>
         <section className={classes.content}>
           <div className={classes.Home_headline}>

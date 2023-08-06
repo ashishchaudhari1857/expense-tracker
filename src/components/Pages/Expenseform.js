@@ -175,7 +175,7 @@ useEffect(() => {
         <Input
           lable={"Amount"}
           input={{
-            type: "number",
+            type0: "number",
             name: "Amount",
             id: "Amount",
             placeholder: "Amount",
